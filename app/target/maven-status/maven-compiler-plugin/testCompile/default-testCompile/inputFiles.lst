@@ -1,5 +1,3 @@
+/app/app/src/test/java/gabriel/user/EditAccountTest.java
 /app/app/src/test/java/gabriel/user/SigninTest.java
 /app/app/src/test/java/gabriel/user/SignupTest.java
-/app/app/src/test/java/gabriel/user/ListVehiclesTest.java
-/app/app/src/test/java/gabriel/user/TestKK.java
-/app/app/src/test/java/gabriel/user/SearchVehicleTest.java

@@ -2,17 +2,16 @@ package gabriel.core.user.usecases;
 
 import gabriel.core.user.domain.User;
 import gabriel.core.user.exceptions.UserNotFoundException;
-import gabriel.core.user.interfaces.SigninInterface;
+import gabriel.core.user.interfaces.AuthenticationAbstraction;
 import gabriel.core.user.repository.UserRepository;
 
-public class Signin implements SigninInterface {
-    private final UserRepository userRepository;
+public final class Signin extends AuthenticationAbstraction {
 
     public Signin(UserRepository userRepository) {
-        this.userRepository = userRepository;
+        super(userRepository);
     }
 
-    public User signin(String username, String password) {
+    public User execute(String username, String password) {
         User user = userRepository.findByUsername(username);
         if (user == null)
             throw new UserNotFoundException("username or password wrong");

@@ -1,23 +1,31 @@
 package gabriel.core.user.domain;
 
 public class User {
-    private Username username;
-    private String password;
+    private final Username username;
+    private final String password;
     private String name;
 
-    public User(String username, String password, String name) {
+    private int workingHours;
+
+    public User(String username, String password) {
         this.username = new Username(username);
         this.password = password;
-        this.name = name;
     }
 
     @Override
     public String toString() {
-        return "{username=" + username + ", password=" + password + ", name=" + name + "}";
+        return "{username: " + username + ", password: " + password + ", name: " + name + ", workingHours: "
+                + workingHours
+                + "}";
+
     }
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Username getUsername() {
@@ -26,6 +34,10 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public int getworkingHours() {
+        return workingHours;
     }
 
     @Override

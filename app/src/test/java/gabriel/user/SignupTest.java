@@ -1,5 +1,6 @@
 package gabriel.user;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
@@ -21,7 +22,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import gabriel.core.user.domain.User;
 import gabriel.core.user.exceptions.UsernameTakenException;
-import gabriel.core.user.interfaces.SignupInterface;
+import gabriel.core.user.interfaces.AuthenticationAbstraction;
 import gabriel.core.user.repository.UserRepository;
 import gabriel.core.user.usecases.Signup;
 
@@ -31,8 +32,8 @@ public class SignupTest {
     private final Collection<User> users = new ArrayList<>();
     private final String username = "test";
     private final String password = "123";
-    private final String name = "test";
-    private final User newUser = new User(username, password, name);
+
+    private final User newUser = new User(username, password);
 
     @BeforeEach
     public void initAll() {
@@ -41,29 +42,32 @@ public class SignupTest {
 
     @ParameterizedTest
     @ValueSource(classes = { Signup.class })
-    public void testSignup_SuccessSignup(Class<? extends SignupInterface> signupClass) throws Exception {
-        SignupInterface signup = signupClass.getDeclaredConstructor(UserRepository.class).newInstance(userRepository);
+    public void testSignup_SuccessSignup(Class<? extends AuthenticationAbstraction> signupClass) throws Exception {
+        AuthenticationAbstraction signup = signupClass.getDeclaredConstructor(UserRepository.class)
+                .newInstance(userRepository);
 
-        signup.signup(username, password, name);
+        User user = signup.execute(username, password);
         verify(userRepository).save(newUser);
         users.add(newUser);
         assertTrue(userRepository.findAll().contains(newUser));
+        assertEquals(new User(username, password), user);
     }
 
     @ParameterizedTest
     @ValueSource(classes = { Signup.class })
-    public void testSignup_UsernameAlreadyExists(Class<? extends SignupInterface> signupClass)
+    public void testSignup_UsernameAlreadyExists(Class<? extends AuthenticationAbstraction> signupClass)
             throws Exception {
-        SignupInterface signup = signupClass.getDeclaredConstructor(UserRepository.class).newInstance(userRepository);
+        AuthenticationAbstraction signup = signupClass.getDeclaredConstructor(UserRepository.class)
+                .newInstance(userRepository);
 
         when(userRepository.findByUsername(username))
-                .thenReturn(new User(username, password, password));
-        assertThrows(UsernameTakenException.class, () -> signup.signup(username,
-                password, name));
+                .thenReturn(new User(username, password));
+        assertThrows(UsernameTakenException.class, () -> signup.execute(username,
+                password));
     }
 
     static Stream<Arguments> signupData() {
-        List<Class<? extends SignupInterface>> signupClasses = Arrays.asList(
+        List<Class<? extends AuthenticationAbstraction>> signupClasses = Arrays.asList(
                 Signup.class);
 
         return signupClasses.stream()
@@ -78,10 +82,11 @@ public class SignupTest {
 
     @ParameterizedTest
     @MethodSource("signupData")
-    public void testSignup_InvalidUsername(Class<? extends SignupInterface> signupClass, String username)
+    public void testSignup_InvalidUsername(Class<? extends AuthenticationAbstraction> signupClass, String username)
             throws Exception {
-        SignupInterface signup = signupClass.getDeclaredConstructor(UserRepository.class).newInstance(userRepository);
+        AuthenticationAbstraction signup = signupClass.getDeclaredConstructor(UserRepository.class)
+                .newInstance(userRepository);
 
-        assertThrows(IllegalArgumentException.class, () -> signup.signup(username, password, name));
+        assertThrows(IllegalArgumentException.class, () -> signup.execute(username, password));
     }
 }

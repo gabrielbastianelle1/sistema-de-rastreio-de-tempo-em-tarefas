@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: gabriel.user.SignupTest
+Test set: gabriel.user.SigninAbsTest
 -------------------------------------------------------------------------------
-Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.938 s -- in gabriel.user.SignupTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.963 s -- in gabriel.user.SigninAbsTest

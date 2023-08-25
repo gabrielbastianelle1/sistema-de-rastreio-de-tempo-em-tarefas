@@ -2,20 +2,22 @@ package gabriel.core.user.usecases;
 
 import gabriel.core.user.domain.User;
 import gabriel.core.user.exceptions.UsernameTakenException;
-import gabriel.core.user.interfaces.SignupInterface;
+import gabriel.core.user.interfaces.AuthenticationAbstraction;
 import gabriel.core.user.repository.UserRepository;
 
-public class Signup implements SignupInterface {
-    private final UserRepository userRepository;
+public final class Signup extends AuthenticationAbstraction {
 
     public Signup(UserRepository userRepository) {
-        this.userRepository = userRepository;
+        super(userRepository);
     }
 
-    public void signup(String username, String password, String name) {
+    public User execute(String username, String password) {
         if (userRepository.findByUsername(username) != null)
             throw new UsernameTakenException();
-        User user = new User(username, password, name);
+
+        User user = new User(username, password);
         this.userRepository.save(user);
+
+        return user;
     }
 }

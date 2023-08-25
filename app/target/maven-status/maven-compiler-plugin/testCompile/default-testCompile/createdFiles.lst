@@ -1,5 +1,3 @@
-gabriel/user/ListVehiclesTest.class
-gabriel/user/ListVehiclesTest$1.class
 gabriel/user/SigninTest.class
-gabriel/user/SearchVehicleTest.class
 gabriel/user/SignupTest.class
+gabriel/user/EditAccountTest.class
