@@ -12,7 +12,7 @@ public final class Signin extends AuthenticationAbstraction {
     }
 
     public User execute(String username, String password) {
-        User user = userRepository.findByUsername(username);
+        User user = userRepository.findById(username);
         if (user == null)
             throw new UserNotFoundException("username or password wrong");
 

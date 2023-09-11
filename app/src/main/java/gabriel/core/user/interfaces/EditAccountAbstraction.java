@@ -16,4 +16,6 @@ public abstract class EditAccountAbstraction {
         return user;
     }
 
+    public abstract void editEditWorkingHour(int i);
+
 }

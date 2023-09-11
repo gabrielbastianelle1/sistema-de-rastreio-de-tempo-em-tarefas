@@ -1,3 +1,13 @@
-gabriel/user/SigninTest.class
-gabriel/user/SignupTest.class
+gabriel/project/CreateProjectTest.class
+gabriel/task/CreateTaskTest.class
 gabriel/user/EditAccountTest.class
+gabriel/repository/RepositoryTest.class
+gabriel/user/SigninTest.class
+gabriel/task/TaskTest.class
+gabriel/task/DeleteTaskTest.class
+gabriel/task/CompleteTaskTest.class
+gabriel/task/AssociateTaskToProjectTest.class
+gabriel/task/ListTasksTest.class
+gabriel/project/DeleteProjectTest.class
+gabriel/user/SignupTest.class
+gabriel/task/ListTasksTest$1.class

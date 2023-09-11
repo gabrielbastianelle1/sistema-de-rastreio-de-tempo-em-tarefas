@@ -12,6 +12,13 @@ public class User {
         this.password = password;
     }
 
+    public User(String username, String password, String name, int workingHours) {
+        this.username = new Username(username);
+        this.password = password;
+        this.name = name;
+        this.workingHours = workingHours;
+    }
+
     @Override
     public String toString() {
         return "{username: " + username + ", password: " + password + ", name: " + name + ", workingHours: "
@@ -38,6 +45,10 @@ public class User {
 
     public int getworkingHours() {
         return workingHours;
+    }
+
+    public void setWorkingHours(int workingHours) {
+        this.workingHours = workingHours;
     }
 
     @Override

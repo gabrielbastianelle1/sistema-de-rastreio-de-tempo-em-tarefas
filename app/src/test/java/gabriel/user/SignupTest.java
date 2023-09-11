@@ -60,7 +60,7 @@ public class SignupTest {
         AuthenticationAbstraction signup = signupClass.getDeclaredConstructor(UserRepository.class)
                 .newInstance(userRepository);
 
-        when(userRepository.findByUsername(username))
+        when(userRepository.findById(username))
                 .thenReturn(new User(username, password));
         assertThrows(UsernameTakenException.class, () -> signup.execute(username,
                 password));

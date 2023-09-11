@@ -24,7 +24,7 @@ public class SigninTest {
     public void testSuccess(Class<? extends AuthenticationAbstraction> signinClass) throws Exception {
         AuthenticationAbstraction signin = signinClass.getConstructor(UserRepository.class).newInstance(userRepository);
 
-        when(userRepository.findByUsername(username)).thenReturn(new User(username, password));
+        when(userRepository.findById(username)).thenReturn(new User(username, password));
         assertEquals(new User(username, password), signin.execute(username, password));
     }
 
@@ -33,7 +33,7 @@ public class SigninTest {
     public void testUserDoNotExist(Class<? extends AuthenticationAbstraction> signinClass) throws Exception {
         AuthenticationAbstraction signin = signinClass.getConstructor(UserRepository.class).newInstance(userRepository);
 
-        when(userRepository.findByUsername(username)).thenReturn(null);
+        when(userRepository.findById(username)).thenReturn(null);
         assertThrows(UserNotFoundException.class, () -> signin.execute(username, password));
 
     }
@@ -43,7 +43,7 @@ public class SigninTest {
     public void testWrongPassword(Class<? extends AuthenticationAbstraction> signinClass) throws Exception {
         AuthenticationAbstraction signin = signinClass.getConstructor(UserRepository.class).newInstance(userRepository);
 
-        when(userRepository.findByUsername(username)).thenReturn(new User(username, password));
+        when(userRepository.findById(username)).thenReturn(new User(username, password));
         assertThrows(UserNotFoundException.class, () -> signin.execute(username, "wrong"));
 
     }

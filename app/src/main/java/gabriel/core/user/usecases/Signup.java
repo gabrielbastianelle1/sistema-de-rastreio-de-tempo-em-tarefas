@@ -12,7 +12,7 @@ public final class Signup extends AuthenticationAbstraction {
     }
 
     public User execute(String username, String password) {
-        if (userRepository.findByUsername(username) != null)
+        if (userRepository.findById(username) != null)
             throw new UsernameTakenException();
 
         User user = new User(username, password);

@@ -12,7 +12,11 @@ public class EditAccount extends EditAccountAbstraction {
     @Override
     public void editName(String newName) {
         user.setName(newName);
-        // throw new UnsupportedOperationException("Unimplemented method 'editName'");
+    }
+
+    @Override
+    public void editEditWorkingHour(int i) {
+        user.setWorkingHours(i);
     }
 
 }

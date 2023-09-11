@@ -1,3 +1,13 @@
+/app/app/src/test/java/gabriel/task/ListTasksTest.java
 /app/app/src/test/java/gabriel/user/EditAccountTest.java
+/app/app/src/test/java/gabriel/project/CreateProjectTest.java
+/app/app/src/test/java/gabriel/project/DeleteProjectTest.java
 /app/app/src/test/java/gabriel/user/SigninTest.java
 /app/app/src/test/java/gabriel/user/SignupTest.java
+/app/app/src/test/java/gabriel/repository/RepositoryTest.java
+/app/app/src/test/java/gabriel/task/TaskTest.java
+/app/app/src/test/java/gabriel/task/DeleteTaskTest.java
+/app/app/src/test/java/gabriel/task/CreateTaskTest.java
+/app/app/src/test/java/gabriel/task/CompleteTaskTest.java
+/app/app/src/test/java/gabriel/project/DeleteProjectAndTasksTest.java
+/app/app/src/test/java/gabriel/task/AssociateTaskToProjectTest.java
