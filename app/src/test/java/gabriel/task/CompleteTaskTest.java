@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.verify;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -16,7 +17,8 @@ import gabriel.core.task.usecases.CompleteTask;
 
 public class CompleteTaskTest extends TaskTest {
 
-    private final Task task = new Task.Builder(10, null, LocalDateTime.of(2017, 12, 05, 11, 30), null).build();
+    private final Task task = new Task.Builder(UUID.randomUUID(), null, LocalDateTime.of(2017, 12, 05, 11, 30), null)
+            .build();
 
     @ParameterizedTest
     @ValueSource(classes = { CompleteTask.class })

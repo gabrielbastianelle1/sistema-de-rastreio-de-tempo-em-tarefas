@@ -1,30 +1,33 @@
 package gabriel.core.task.domain;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import gabriel.core.project.domain.Project;
 import gabriel.core.user.domain.User;
 
 public final class Task {
 
-    private final Integer id;
+    private final UUID id;
     private final String description;
-    private final LocalDateTime startDate;
+    private final LocalDateTime createdAt;
+    private LocalDateTime startDate;
     private LocalDateTime endDate;
-    private final User user;
+    private final User createdBy;
+    private User takenBy;
     private Project project;
+    private TaskState state;
 
-    private Task(Builder builder) {
-        this.id = builder.id;
-        this.description = builder.description;
-        this.startDate = builder.startDate;
-        this.endDate = builder.endDate;
-        this.user = builder.user;
-        this.project = builder.project;
+    public UUID getId() {
+        return id;
     }
 
     public String getDescription() {
         return description;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
     public LocalDateTime getStartDate() {
@@ -35,26 +38,25 @@ public final class Task {
         return endDate;
     }
 
-    public User getUser() {
-        return user;
+    public User getCreatedBy() {
+        return createdBy;
     }
 
-    public Integer getId() {
-        return id;
+    public User getTakenBy() {
+        return takenBy;
     }
 
     public Project getProject() {
         return project;
     }
 
-    public void setProject(Project project) {
-        this.project = project;
+    public TaskState getState() {
+        return state;
     }
 
-    public void setEndDate(LocalDateTime endDate) {
-        this.endDate = endDate;
-    }
-
+    /**
+     * hashCode and equals to: id
+     */
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -80,24 +82,76 @@ public final class Task {
         return true;
     }
 
+    private Task(Builder builder) {
+        this.id = builder.id;
+        this.description = builder.description;
+        this.createdAt = builder.createdAt;
+        this.startDate = builder.startDate;
+        this.endDate = builder.endDate;
+        this.createdBy = builder.createdBy;
+        this.project = builder.project;
+        this.takenBy = builder.takenBy;
+        this.state = builder.state;
+    }
+
+    public void setStartDate(LocalDateTime startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setTakenBy(User takenBy) {
+        this.takenBy = takenBy;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
+    public void setEndDate(LocalDateTime endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setState(TaskState state) {
+        this.state = state;
+    }
+
+    /**
+     * Builder class
+     */
     public static final class Builder {
 
-        private final Integer id;
+        private final UUID id;
         private final String description;
-        private final LocalDateTime startDate;
+        private final LocalDateTime createdAt;
+        private LocalDateTime startDate;
         private LocalDateTime endDate;
-        private final User user;
+        private final User createdBy;
+        private User takenBy;
         private Project project;
+        private TaskState state;
 
-        public Builder(Integer id, String description, LocalDateTime startDate, User user) {
+        /**
+         * Constructor
+         *
+         * @param id
+         * @param description
+         * @param createdAt
+         * @param createdBy
+         */
+        public Builder(UUID id, String description, LocalDateTime createdAt, User createdBy) {
             this.id = id;
             this.description = description;
-            if (startDate != null) {
-                this.startDate = startDate;
+            if (createdAt != null) {
+                this.createdAt = createdAt;
             } else {
-                this.startDate = LocalDateTime.now();
+                this.createdAt = LocalDateTime.now();
             }
-            this.user = user;
+            this.createdBy = createdBy;
+            this.state = TaskState.AVAILABLE;
+        }
+
+        public Builder withStartDate(LocalDateTime startDate) {
+            this.startDate = startDate;
+            return this;
         }
 
         public Builder withEndDate(LocalDateTime endDate) {
@@ -107,6 +161,11 @@ public final class Task {
 
         public Builder withProject(Project project) {
             this.project = project;
+            return this;
+        }
+
+        public Builder withState(TaskState state) {
+            this.state = state;
             return this;
         }
 

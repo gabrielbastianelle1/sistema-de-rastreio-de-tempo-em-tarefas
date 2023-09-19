@@ -6,6 +6,7 @@ import java.util.Collection;
 
 import gabriel.core.UseCaseAbstraction;
 import gabriel.core.task.domain.Task;
+import gabriel.core.task.domain.TaskState;
 import gabriel.core.task.dto.ListTasksDto;
 import gabriel.core.task.dto.ListTasksDto.Input;
 import gabriel.core.task.dto.ListTasksDto.Output;
@@ -29,6 +30,9 @@ public class ListTasks extends UseCaseAbstraction<ListTasksDto.Input, ListTasksD
 
     private float calculateHoursTaken(Task task) {
         float durationInHours;
+
+        if (task.getState() == TaskState.AVAILABLE)
+            return 0;
 
         if (task.getEndDate() != null) {
             durationInHours = (float) Duration.between(task.getStartDate(), task.getEndDate()).toMinutes()

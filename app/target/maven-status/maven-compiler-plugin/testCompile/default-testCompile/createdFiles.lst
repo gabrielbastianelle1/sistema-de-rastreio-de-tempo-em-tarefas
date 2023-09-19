@@ -1,8 +1,11 @@
 gabriel/project/CreateProjectTest.class
 gabriel/task/CreateTaskTest.class
+gabriel/invitation/InviteUserTest.class
 gabriel/user/EditAccountTest.class
+gabriel/invitation/InviteUserTest$2.class
 gabriel/repository/RepositoryTest.class
 gabriel/user/SigninTest.class
+gabriel/invitation/InviteUserTest$1.class
 gabriel/task/TaskTest.class
 gabriel/task/DeleteTaskTest.class
 gabriel/task/CompleteTaskTest.class

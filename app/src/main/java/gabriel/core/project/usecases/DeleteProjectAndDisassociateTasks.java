@@ -15,6 +15,12 @@ public class DeleteProjectAndDisassociateTasks extends
         super(input);
     }
 
+    /**
+     * method delete project and set all project propertie of each task to null.
+     * 
+     * @return the dto Output containin the result boolean
+     */
+
     @Override
     public Output execute() {
         Collection<Task> tasks = input.projectRepository().findAllTaskByProject(input.project());

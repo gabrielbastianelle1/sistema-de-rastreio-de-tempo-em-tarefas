@@ -3,13 +3,13 @@ package gabriel.task;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+
+import java.util.UUID;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import gabriel.core.UseCaseAbstraction;
-import gabriel.core.task.domain.Task;
 import gabriel.core.task.dto.CreateTaskDto;
 import gabriel.core.task.usecases.CreateTask;
 import gabriel.core.user.domain.User;
@@ -25,12 +25,11 @@ public class CreateTaskTest extends TaskTest {
         UseCaseAbstraction<CreateTaskDto.Input, CreateTaskDto.Output> createTask = clazz
                 .getDeclaredConstructor(CreateTaskDto.Input.class)
                 .newInstance(new CreateTaskDto.Input(repository, user, null, null));
-        when(repository.findLastId()).thenReturn(10);
 
         CreateTaskDto.Output result = createTask.execute();
 
-        assertEquals(11, result.taskId());
-        verify(repository).save(new Task.Builder(11, null, null, user).build());
+        assertEquals(UUID.class, result.task().getId().getClass());
+        verify(repository).save(result.task());
     }
 
 }

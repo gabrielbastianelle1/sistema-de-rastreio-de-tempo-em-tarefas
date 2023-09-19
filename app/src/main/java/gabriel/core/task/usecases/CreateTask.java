@@ -1,5 +1,7 @@
 package gabriel.core.task.usecases;
 
+import java.util.UUID;
+
 import gabriel.core.UseCaseAbstraction;
 import gabriel.core.task.domain.Task;
 import gabriel.core.task.dto.CreateTaskDto;
@@ -14,12 +16,11 @@ public class CreateTask extends UseCaseAbstraction<CreateTaskDto.Input, CreateTa
 
     @Override
     public Output execute() {
-        Integer lastId = input.repository().findLastId();
-        Task task = new Task.Builder(lastId + 1, input.description(), input.startDate(),
+        Task task = new Task.Builder(UUID.randomUUID(), input.description(), input.startDate(),
                 input.user()).build();
         input.repository().save(task);
 
-        return new Output(task.getId());
+        return new Output(task);
     }
 
 }

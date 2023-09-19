@@ -6,10 +6,49 @@ import gabriel.core.user.domain.User;
 
 public class Project {
 
+    public static final class Builder {
+        private String regex = "^(?!.*[^\\w\\s]).{5,}$";
+        private final UUID projectId;
+        private final User user;
+        private final String name;
+        private float pricePerHour;
+
+        public Builder(UUID projectId, User user, String name) {
+            this.projectId = projectId;
+            if (name.matches(regex) == false)
+                throw new IllegalArgumentException(
+                        "invalid name, it sould have no special caracters and length minimum 5");
+
+            if (user == null) {
+                throw new IllegalArgumentException(
+                        "user must have a value");
+            }
+
+            this.user = user;
+            this.name = name;
+        }
+
+        public Builder withPricePerHour(float pricePerHour) {
+            if (pricePerHour < 0) {
+                throw new IllegalArgumentException(
+                        "price cannot be negative");
+            }
+
+            this.pricePerHour = pricePerHour;
+            return this;
+        }
+
+        public Project build() {
+            return new Project(this);
+        }
+
+    }
+
     private String regex = "^(?!.*[^\\w\\s]).{5,}$";
     private final UUID projectId;
     private final User user;
     private final String name;
+
     private float pricePerHour;
 
     private Project(Builder builder) {
@@ -80,44 +119,6 @@ public class Project {
         } else if (!projectId.equals(other.projectId))
             return false;
         return true;
-    }
-
-    public static final class Builder {
-        private String regex = "^(?!.*[^\\w\\s]).{5,}$";
-        private final UUID projectId;
-        private final User user;
-        private final String name;
-        private float pricePerHour;
-
-        public Builder(UUID projectId, User user, String name) {
-            this.projectId = projectId;
-            if (name.matches(regex) == false)
-                throw new IllegalArgumentException(
-                        "invalid name, it sould have no special caracters and length minimum 5");
-
-            if (user == null) {
-                throw new IllegalArgumentException(
-                        "user must have a value");
-            }
-
-            this.user = user;
-            this.name = name;
-        }
-
-        public Builder withPricePerHour(float pricePerHour) {
-            if (pricePerHour < 0) {
-                throw new IllegalArgumentException(
-                        "price cannot be negative");
-            }
-
-            this.pricePerHour = pricePerHour;
-            return this;
-        }
-
-        public Project build() {
-            return new Project(this);
-        }
-
     }
 
 }

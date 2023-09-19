@@ -1,10 +1,21 @@
 package gabriel.core.userProject.repository;
 
+import java.util.Collection;
 import java.util.UUID;
 
+import gabriel.core.project.domain.Project;
+import gabriel.core.user.domain.User;
 import gabriel.core.userProject.domain.UserProject;
 import gabriel.repository.interfaces.RepositoryInterface;
 
 public interface UserProjectRepository extends RepositoryInterface<UserProject, UUID> {
+
+    /**
+     * Should return all users joined by given project
+     *
+     * @param project
+     * @return
+     */
+    public abstract Collection<User> findAllUsersByProject(Project project);
 
 }

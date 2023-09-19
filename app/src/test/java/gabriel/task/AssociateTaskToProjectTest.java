@@ -7,6 +7,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -20,12 +21,13 @@ import gabriel.core.task.usecases.AssociateTask;
 import gabriel.core.user.domain.User;
 
 public class AssociateTaskToProjectTest extends TaskTest {
+    private UUID id = UUID.randomUUID();
     private Task task = mock(Task.class);
     private Project project = mock(Project.class);
 
     @BeforeEach
     public void init() {
-        when(task.getId()).thenReturn(1);
+        when(task.getId()).thenReturn(id);
     }
 
     @ParameterizedTest
@@ -39,7 +41,7 @@ public class AssociateTaskToProjectTest extends TaskTest {
 
         assertTrue(result);
         verify(task).setProject(project);
-        verify(repository).update(1, task);
+        verify(repository).update(id, task);
     }
 
     @ParameterizedTest

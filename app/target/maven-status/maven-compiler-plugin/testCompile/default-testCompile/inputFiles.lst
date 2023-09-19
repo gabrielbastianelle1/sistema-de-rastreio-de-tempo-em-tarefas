@@ -9,5 +9,5 @@
 /app/app/src/test/java/gabriel/task/DeleteTaskTest.java
 /app/app/src/test/java/gabriel/task/CreateTaskTest.java
 /app/app/src/test/java/gabriel/task/CompleteTaskTest.java
-/app/app/src/test/java/gabriel/project/DeleteProjectAndTasksTest.java
+/app/app/src/test/java/gabriel/invitation/InviteUserTest.java
 /app/app/src/test/java/gabriel/task/AssociateTaskToProjectTest.java
