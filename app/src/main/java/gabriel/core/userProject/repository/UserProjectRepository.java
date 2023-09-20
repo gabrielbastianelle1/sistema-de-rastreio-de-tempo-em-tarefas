@@ -18,4 +18,13 @@ public interface UserProjectRepository extends RepositoryInterface<UserProject, 
      */
     public abstract Collection<User> findAllUsersByProject(Project project);
 
+    /**
+     * Should delete the UserProject by given project and user
+     * 
+     * @param project
+     * @param user
+     * @return
+     */
+    public abstract Boolean deleteByUserAndProject(Project project, User user);
+
 }

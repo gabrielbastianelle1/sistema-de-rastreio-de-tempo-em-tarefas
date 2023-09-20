@@ -1,11 +1,13 @@
 gabriel/core/user/repository/UserRepository.class
 gabriel/core/task/dto/CreateTaskDto$Output.class
 gabriel/core/user/exceptions/UsernameTakenException.class
+gabriel/core/invitation/dto/UpdateInvitationDto.class
 gabriel/core/user/domain/User.class
 gabriel/core/userProject/domain/UserProject.class
 gabriel/core/project/dto/CreateProjectDto$Input.class
 gabriel/core/project/dto/DeleteTaskDto$Input.class
 gabriel/core/task/dto/DeleteTaskDto$Output.class
+gabriel/core/invitation/dto/UpdateInvitationDto$Input.class
 gabriel/core/project/dto/DeleteTaskDto$Output.class
 gabriel/core/task/usecases/CreateTask.class
 gabriel/core/task/domain/Task$Builder.class
@@ -14,6 +16,7 @@ gabriel/views/Signin.class
 gabriel/App.class
 gabriel/core/user/domain/Username.class
 gabriel/core/task/usecases/DeleteTask.class
+gabriel/core/invitation/usacases/UpdateInvitation$Output.class
 gabriel/repository/interfaces/IdInterface.class
 gabriel/core/UseCase.class
 gabriel/core/project/usecases/CreateProject.class
@@ -33,6 +36,7 @@ gabriel/core/invitation/domain/Invitation.class
 gabriel/core/task/dto/CreateTaskDto.class
 gabriel/core/project/usecases/DeleteProjectAndDisassociateTasks.class
 gabriel/core/UseCaseAbstraction.class
+gabriel/core/userProject/usecases/DeleteUserProject.class
 gabriel/core/invitation/domain/Invitation$Builder.class
 gabriel/core/user/usecases/EditAccount.class
 gabriel/core/invitation/usacases/InviteUser.class
@@ -40,6 +44,7 @@ gabriel/core/task/dto/CompleteTaskDto$Output.class
 gabriel/core/userProject/domain/UserProject$Builder.class
 gabriel/core/task/dto/CompleteTaskDto.class
 gabriel/core/task/dto/ListTasksDto$Output.class
+gabriel/core/invitation/dto/UpdateInvitationDto$Output.class
 gabriel/core/UseCaseDto.class
 gabriel/core/user/usecases/Signin.class
 gabriel/core/invitation/dto/InviteUserDto$Output.class
@@ -47,6 +52,7 @@ gabriel/views/Index.class
 gabriel/core/task/domain/TaskState.class
 gabriel/core/task/usecases/AssociateTask.class
 gabriel/core/task/usecases/ListTasks.class
+gabriel/App$Person$Builder.class
 gabriel/core/invitation/domain/InvitationState.class
 gabriel/core/task/dto/ListTasksDto$Input.class
 gabriel/core/invitation/repository/InvitationRepository.class
@@ -58,6 +64,8 @@ gabriel/core/project/domain/Project$Builder.class
 gabriel/core/user/usecases/Signup.class
 gabriel/core/project/usecases/DeleteProjectAndTasks.class
 gabriel/core/user/interfaces/AuthenticationInterface.class
+gabriel/core/invitation/usacases/UpdateInvitation.class
+gabriel/core/userProject/usecases/DeleteUserProject$Output.class
 gabriel/core/task/repository/TaskRepository.class
 gabriel/core/task/dto/CompleteTaskDto$Input.class
 gabriel/repository/Database.class
@@ -66,3 +74,6 @@ gabriel/core/user/exceptions/UserNotFoundException.class
 gabriel/core/invitation/dto/InviteUserDto$Input.class
 gabriel/core/task/domain/Task.class
 gabriel/core/project/dto/CreateProjectDto.class
+gabriel/App$Person.class
+gabriel/core/userProject/usecases/DeleteUserProject$Input.class
+gabriel/core/invitation/usacases/UpdateInvitation$Input.class

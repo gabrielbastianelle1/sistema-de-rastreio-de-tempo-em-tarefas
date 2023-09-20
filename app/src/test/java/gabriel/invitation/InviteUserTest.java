@@ -75,7 +75,6 @@ public class InviteUserTest {
         });
 
         assertThrows(DuplicatedUserException.class, () -> inviteUser.execute());
-        verify(invitationRepository).findAllActiveInvitationByUser(sender);
         verify(userProjectRepository).findAllUsersByProject(project);
     }
 

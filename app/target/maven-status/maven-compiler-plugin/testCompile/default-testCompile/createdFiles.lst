@@ -4,6 +4,7 @@ gabriel/invitation/InviteUserTest.class
 gabriel/user/EditAccountTest.class
 gabriel/invitation/InviteUserTest$2.class
 gabriel/repository/RepositoryTest.class
+gabriel/userproject/DeleteUserProjectTest.class
 gabriel/user/SigninTest.class
 gabriel/invitation/InviteUserTest$1.class
 gabriel/task/TaskTest.class
@@ -11,6 +12,7 @@ gabriel/task/DeleteTaskTest.class
 gabriel/task/CompleteTaskTest.class
 gabriel/task/AssociateTaskToProjectTest.class
 gabriel/task/ListTasksTest.class
+gabriel/invitation/UpdateInvitationTest.class
 gabriel/project/DeleteProjectTest.class
 gabriel/user/SignupTest.class
 gabriel/task/ListTasksTest$1.class
