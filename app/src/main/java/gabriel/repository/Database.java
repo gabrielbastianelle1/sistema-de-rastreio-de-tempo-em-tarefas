@@ -18,23 +18,23 @@ public class Database implements UserRepository {
     }
 
     @Override
-    public String save(User user) {
+    public Username save(User user) {
         this.users.put(user.getUsername(), user);
-        return user.getUsername().getUsername();
+        return user.getUsername();
     }
 
     @Override
-    public User findById(String id) {
-        return this.users.get(new Username(id));
+    public User findById(Username id) {
+        return this.users.get(id);
     }
 
     @Override
-    public boolean delete(String id) {
+    public boolean delete(Username id) {
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
     }
 
     @Override
-    public boolean update(String id, User updated) {
+    public boolean update(Username id, User updated) {
         throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 

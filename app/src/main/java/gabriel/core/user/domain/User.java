@@ -1,56 +1,51 @@
 package gabriel.core.user.domain;
 
-public class User {
+public final class User {
+
+    public final static class Builder {
+        private final Username username;
+        private final String password;
+        private String name;
+
+        private int workingHours;
+
+        public Builder(Username username, String password) {
+            this.username = username;
+            this.password = password;
+        }
+
+        public Builder withName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder withWorkingHours(int workingHours) {
+            this.workingHours = workingHours;
+            return this;
+        }
+
+        public User build() {
+            return new User(this);
+        }
+
+    }
+
     private final Username username;
     private final String password;
     private String name;
 
     private int workingHours;
 
-    public User(String username, String password) {
-        this.username = new Username(username);
-        this.password = password;
+    private User(Builder builder) {
+        this.username = builder.username;
+        this.password = builder.password;
+        this.name = builder.name;
+        this.workingHours = builder.workingHours;
     }
 
-    public User(String username, String password, String name, int workingHours) {
-        this.username = new Username(username);
-        this.password = password;
-        this.name = name;
-        this.workingHours = workingHours;
-    }
-
-    @Override
-    public String toString() {
-        return "{username: " + username + ", password: " + password + ", name: " + name + ", workingHours: "
-                + workingHours
-                + "}";
-
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Username getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public int getworkingHours() {
-        return workingHours;
-    }
-
-    public void setWorkingHours(int workingHours) {
-        this.workingHours = workingHours;
-    }
-
+    /**
+     * equals and hashCode to Username field
+     */
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -74,6 +69,22 @@ public class User {
         } else if (!username.equals(other.username))
             return false;
         return true;
+    }
+
+    public Username getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getWorkingHours() {
+        return workingHours;
     }
 
 }

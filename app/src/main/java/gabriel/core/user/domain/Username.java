@@ -23,6 +23,9 @@ public class Username {
         return result;
     }
 
+    /**
+     * equals and hashcode to username field
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj)

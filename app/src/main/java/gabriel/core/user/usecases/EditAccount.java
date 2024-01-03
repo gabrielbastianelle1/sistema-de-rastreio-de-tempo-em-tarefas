@@ -7,16 +7,33 @@ public class EditAccount extends EditAccountAbstraction {
 
     public EditAccount(User user) {
         super(user);
+        // TODO Auto-generated constructor stub
     }
 
     @Override
     public void editName(String newName) {
-        user.setName(newName);
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'editName'");
     }
 
     @Override
     public void editEditWorkingHour(int i) {
-        user.setWorkingHours(i);
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'editEditWorkingHour'");
     }
+
+    // public EditAccount(User user) {
+    // super(user);
+    // }
+
+    // @Override
+    // public void editName(String newName) {
+    // user.setName(newName);
+    // }
+
+    // @Override
+    // public void editEditWorkingHour(int i) {
+    // user.setWorkingHours(i);
+    // }
 
 }

@@ -1,23 +1,37 @@
 package gabriel.core.user.usecases;
 
+import gabriel.core.UseCaseAbstraction;
 import gabriel.core.user.domain.User;
+import gabriel.core.user.domain.Username;
+import gabriel.core.user.dto.SignupDto;
+import gabriel.core.user.dto.SignupDto.Input;
+import gabriel.core.user.dto.SignupDto.Output;
 import gabriel.core.user.exceptions.UsernameTakenException;
-import gabriel.core.user.interfaces.AuthenticationAbstraction;
-import gabriel.core.user.repository.UserRepository;
 
-public final class Signup extends AuthenticationAbstraction {
+public final class Signup extends UseCaseAbstraction<SignupDto.Input, SignupDto.Output> {
 
-    public Signup(UserRepository userRepository) {
-        super(userRepository);
+    public Signup(Input input) {
+        super(input);
     }
 
-    public User execute(String username, String password) {
-        if (userRepository.findById(username) != null)
+    @Override
+    public Output execute() {
+        if (input.userRepository().findById(new Username(input.username())) != null)
             throw new UsernameTakenException();
 
-        User user = new User(username, password);
-        this.userRepository.save(user);
+        User.Builder user = new User.Builder(new Username(input.username()), input.password());
 
-        return user;
+        if (input.name() != null) {
+            user.withName(input.name());
+        }
+
+        if (input.workingHours() != 0) {
+            user.withWorkingHours(input.workingHours());
+        }
+
+        input.userRepository().save(user.build());
+
+        return new Output(user.build());
     }
+
 }

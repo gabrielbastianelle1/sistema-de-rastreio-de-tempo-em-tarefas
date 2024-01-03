@@ -1,57 +1,22 @@
 package gabriel;
 
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+
 public class App {
-    public static void main(String[] args) {
 
-        System.out.println(Long.MIN_VALUE);
+    public static void main(String[] args) throws IOException {
+        // String json = "{\"username\":\"myUsername\",\"password\":\"myPassword\"}";
 
-        Person person = new Person.Builder().withUsername("gabriel").build();
-        String lala = person.getUsername();
+        try (ServerSocket serverSocket = new ServerSocket(4000)) {
+            while (true) {
+                Socket clientSocket = serverSocket.accept();
 
-        System.out.println(lala);
-
-        lala = "seilaqualquercoisa";
-
-        System.out.println(lala);
-
-        System.out.println(person.getUsername());
-
+                Runnable cria = new ClientHandler(clientSocket, "gabriel.infra.controller.");
+                Thread my = new Thread(cria, clientSocket.getInetAddress().getHostAddress());
+                my.start();
+            }
+        }
     }
-
-    static class Person {
-
-        public static class Builder {
-            private String username;
-
-            public Builder() {
-            }
-
-            public Builder withUsername(String username) {
-                this.username = username;
-                return this;
-            }
-
-            public Person build() {
-                return new Person(this);
-            }
-
-        }
-
-        private String username;
-
-        private Person(Builder builder) {
-            this.username = builder.username;
-        }
-
-        public String getUsername() {
-            return username;
-        }
-
-        @Override
-        public String toString() {
-            return "Person [username=" + username + "]";
-        }
-
-    }
-
 }
