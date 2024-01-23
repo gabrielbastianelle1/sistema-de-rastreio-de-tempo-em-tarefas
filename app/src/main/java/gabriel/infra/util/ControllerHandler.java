@@ -1,7 +1,9 @@
-package gabriel;
+package gabriel.infra.util;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+
+import gabriel.core.UseCaseDto;
 
 public class ControllerHandler {
 
@@ -21,7 +23,6 @@ public class ControllerHandler {
     }
 
     public class ObjectHandler {
-
         private final Class<?> controllerClazz;
 
         public ObjectHandler(Class<?> controllerClazz) {
@@ -49,16 +50,24 @@ public class ControllerHandler {
     }
 
     public class MethodHandler {
-
         private final Object controllerObject;
 
         public MethodHandler(Object controllerObject) {
             this.controllerObject = controllerObject;
         }
 
-        public Object executeMethod(String methodName) {
+        public UseCaseDto.Output executeMethod(String methodName, String body) {
             try {
-                return this.controllerObject.getClass().getDeclaredMethod(methodName).invoke(this.controllerObject);
+                if (body != null) {
+
+                    return (UseCaseDto.Output) this.controllerObject.getClass()
+                            .getDeclaredMethod(methodName, String.class)
+                            .invoke(
+                                    this.controllerObject,
+                                    body);
+                }
+                return (UseCaseDto.Output) this.controllerObject.getClass().getDeclaredMethod(methodName)
+                        .invoke(this.controllerObject);
             } catch (IllegalAccessException | IllegalArgumentException
                     | InvocationTargetException | NoSuchMethodException | SecurityException e) {
                 throw new RuntimeException(e);

@@ -6,7 +6,7 @@ import java.util.UUID;
 import gabriel.core.project.domain.Project;
 import gabriel.core.user.domain.User;
 import gabriel.core.userProject.domain.UserProject;
-import gabriel.repository.interfaces.RepositoryInterface;
+import gabriel.infra.repository.interfaces.RepositoryInterface;
 
 public interface UserProjectRepository extends RepositoryInterface<UserProject, UUID> {
 
@@ -20,7 +20,7 @@ public interface UserProjectRepository extends RepositoryInterface<UserProject, 
 
     /**
      * Should delete the UserProject by given project and user
-     * 
+     *
      * @param project
      * @param user
      * @return

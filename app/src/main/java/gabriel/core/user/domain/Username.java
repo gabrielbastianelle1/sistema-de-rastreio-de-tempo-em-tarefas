@@ -1,7 +1,12 @@
 package gabriel.core.user.domain;
 
+import gabriel.infra.util.JsonField;
+
 public class Username {
+    @JsonField(true)
     private final String username;
+
+    @JsonField(false)
     private final String regex = "^(?=.*[a-zA-Z])[a-zA-Z0-9_]{3,16}$";
 
     public Username(String username) {

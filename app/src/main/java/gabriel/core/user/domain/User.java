@@ -1,12 +1,13 @@
 package gabriel.core.user.domain;
 
+import gabriel.infra.util.JsonField;
+
 public final class User {
 
     public final static class Builder {
         private final Username username;
         private final String password;
         private String name;
-
         private int workingHours;
 
         public Builder(Username username, String password) {
@@ -30,10 +31,16 @@ public final class User {
 
     }
 
+    @JsonField(true)
     private final Username username;
+
+    @JsonField(true)
     private final String password;
+
+    @JsonField(true)
     private String name;
 
+    @JsonField(true)
     private int workingHours;
 
     private User(Builder builder) {

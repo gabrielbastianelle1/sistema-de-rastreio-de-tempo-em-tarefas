@@ -6,6 +6,5 @@ public interface UseCaseDto {
     }
 
     public interface Output {
-
     }
 }

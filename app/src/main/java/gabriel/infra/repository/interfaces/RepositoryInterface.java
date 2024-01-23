@@ -1,4 +1,4 @@
-package gabriel.repository.interfaces;
+package gabriel.infra.repository.interfaces;
 
 import java.util.Collection;
 

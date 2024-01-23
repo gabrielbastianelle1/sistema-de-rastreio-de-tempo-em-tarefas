@@ -1,4 +1,4 @@
-package gabriel.repository;
+package gabriel.infra.repository;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -10,22 +10,22 @@ import gabriel.core.user.repository.UserRepository;
 
 public class Database implements UserRepository {
 
-    private Map<Username, User> users = new HashMap<Username, User>();
+    private static Map<Username, User> users = new HashMap<Username, User>();
 
     @Override
     public Collection<User> findAll() {
-        return this.users.values();
+        return users.values();
     }
 
     @Override
     public Username save(User user) {
-        this.users.put(user.getUsername(), user);
+        users.put(user.getUsername(), user);
         return user.getUsername();
     }
 
     @Override
     public User findById(Username id) {
-        return this.users.get(id);
+        return users.get(id);
     }
 
     @Override

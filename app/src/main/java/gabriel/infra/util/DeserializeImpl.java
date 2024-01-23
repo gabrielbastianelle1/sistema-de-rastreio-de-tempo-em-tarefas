@@ -20,6 +20,12 @@ public class DeserializeImpl<K, V> implements JsonDeserialize<K, V> {
     public Map<K, V> execute(String json) {
         String[] entries = json.replaceAll("[{}\"]", "").split(",");
 
+        /**
+         * entries - [username:gabriel, password:123]
+         * entries.map - [[username, gabriel], [password, 123]]
+         * entries.collect - map: entry<username, gabriel> entry<password, 123>
+         */
+
         Map<K, V> map = Arrays.stream(entries)
                 .map(entry -> entry.split(":"))
                 .collect(Collectors.toMap(

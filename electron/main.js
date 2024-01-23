@@ -52,5 +52,9 @@ ipcMain.on("signup", (_event, data) => {
     console.log("cheguei no ipcMain");
     //client.write(data + "\n");
 
-    client.write("/user/signup" + "\r\n");
+    if (data == null) {
+        throw new Error("signup null data");
+    }
+
+    //client.write("/user/signup" + "?" + +`${data}` + "\r\n");
 });

@@ -5,7 +5,7 @@ import java.util.UUID;
 
 import gabriel.core.invitation.domain.Invitation;
 import gabriel.core.user.domain.User;
-import gabriel.repository.interfaces.RepositoryInterface;
+import gabriel.infra.repository.interfaces.RepositoryInterface;
 
 public interface InvitationRepository extends RepositoryInterface<Invitation, UUID> {
 
