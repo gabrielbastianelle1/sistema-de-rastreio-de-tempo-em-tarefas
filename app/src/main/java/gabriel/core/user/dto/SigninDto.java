@@ -5,8 +5,27 @@ import gabriel.core.user.domain.User;
 import gabriel.core.user.repository.UserRepository;
 
 public final class SigninDto {
-    public static final record Input(UserRepository userRepository, String username, String password)
-            implements UseCaseDto.Input {
+    public static final class Input implements UseCaseDto.Input {
+        private String username;
+        private String password;
+        private UserRepository userRepository;
+
+        public Input() {
+
+        }
+
+        public String username() {
+            return username;
+        }
+
+        public String password() {
+            return password;
+        }
+
+        public UserRepository userRepository() {
+            return userRepository;
+        }
+
     }
 
     public static final record Output(User user) implements UseCaseDto.Output {

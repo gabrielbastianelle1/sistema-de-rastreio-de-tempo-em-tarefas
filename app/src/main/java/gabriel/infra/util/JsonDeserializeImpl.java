@@ -1,10 +1,14 @@
 package gabriel.infra.util;
 
+import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class DeserializeImpl<K, V> implements JsonDeserialize<K, V> {
+import gabriel.infra.reflection.Container;
+
+public class JsonDeserializeImpl implements JsonDeserialize {
+    private Container container = new Container();
 
     // @Override
     // public Map<K, V> execute(String json) {
@@ -17,7 +21,7 @@ public class DeserializeImpl<K, V> implements JsonDeserialize<K, V> {
     // }
 
     @Override
-    public Map<K, V> execute(String json) {
+    public <K, V> Map<K, V> execute(String json) {
         String[] entries = json.replaceAll("[{}\"]", "").split(",");
 
         /**
@@ -37,9 +41,42 @@ public class DeserializeImpl<K, V> implements JsonDeserialize<K, V> {
 
     @SuppressWarnings("unchecked")
     private <T> T convert(String str) {
+
         // Add your own logic here to convert string 'str' to type 'T'
         // For simplicity, assuming both K and V are strings in this example
         return (T) str;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public <T> T executeTest(Class<T> clazz, String json) {
+
+        try {
+            String[] entries = json.replaceAll("[{}\"]", "").split(",");
+            Object dto = container.getInstance(clazz);
+
+            for (String pair : entries) {
+                String[] keyValue = pair.split(":");
+                String fieldName = keyValue[0].trim();
+                String fieldValue = keyValue[1].trim();
+
+                Field field = clazz.getDeclaredField(fieldName);
+
+                field.setAccessible(true);
+                if (field.getType() == String.class) {
+                    field.set(dto, fieldValue);
+                } else if (field.getType() == int.class) {
+                    field.set(dto, Integer.parseInt(fieldValue));
+                }
+
+                field.setAccessible(false);
+            }
+
+            return (T) dto;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 }

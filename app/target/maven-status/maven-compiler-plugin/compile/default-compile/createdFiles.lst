@@ -1,5 +1,3 @@
-gabriel/infra/util/RequestHandler.class
-gabriel/infra/util/ControllerHandler$ObjectHandler.class
 gabriel/core/user/repository/UserRepository.class
 gabriel/core/task/dto/CreateTaskDto$Output.class
 gabriel/core/user/exceptions/UsernameTakenException.class
@@ -34,9 +32,11 @@ gabriel/core/userProject/repository/UserProjectRepository.class
 gabriel/core/task/dto/CreateTaskDto$Input.class
 gabriel/infra/util/ResponseError.class
 gabriel/core/task/dto/ListTasksDto.class
+gabriel/infra/reflection/MethodHandler.class
 gabriel/core/user/interfaces/EditAccountAbstraction.class
 gabriel/core/invitation/exception/DuplicatedUserException.class
 gabriel/core/invitation/dto/InviteUserDto.class
+gabriel/infra/reflection/Reflection.class
 gabriel/core/invitation/domain/Invitation.class
 gabriel/core/task/dto/CreateTaskDto.class
 gabriel/core/project/usecases/DeleteProjectAndDisassociateTasks.class
@@ -62,6 +62,7 @@ gabriel/core/user/usecases/Signin.class
 gabriel/core/invitation/dto/InviteUserDto$Output.class
 gabriel/core/task/domain/TaskState.class
 gabriel/core/task/usecases/AssociateTask.class
+gabriel/infra/util/JsonDeserializeImpl.class
 gabriel/core/task/usecases/ListTasks.class
 gabriel/core/invitation/domain/InvitationState.class
 gabriel/infra/repository/interfaces/RepositoryInterface.class
@@ -70,11 +71,9 @@ gabriel/core/invitation/repository/InvitationRepository.class
 gabriel/core/project/dto/DeleteTaskDto.class
 gabriel/core/project/dto/CreateProjectDto$Output.class
 gabriel/core/task/dto/DeleteTaskDto.class
-gabriel/infra/util/DeserializeImpl.class
 gabriel/core/UseCaseDto$Input.class
 gabriel/core/project/domain/Project$Builder.class
 gabriel/core/user/usecases/Signup.class
-gabriel/infra/util/ControllerHandler.class
 gabriel/core/project/usecases/DeleteProjectAndTasks.class
 gabriel/infra/util/Request.class
 gabriel/infra/util/Response.class
@@ -84,13 +83,12 @@ gabriel/core/userProject/usecases/DeleteUserProject$Output.class
 gabriel/core/task/repository/TaskRepository.class
 gabriel/core/user/dto/SigninDto$Input.class
 gabriel/core/task/dto/CompleteTaskDto$Input.class
-gabriel/infra/util/Controller.class
 gabriel/core/project/domain/Project.class
 gabriel/core/user/exceptions/UserNotFoundException.class
 gabriel/core/invitation/dto/InviteUserDto$Input.class
 gabriel/core/task/domain/Task.class
+gabriel/infra/reflection/Container.class
 gabriel/core/project/dto/CreateProjectDto.class
-gabriel/infra/util/ControllerHandler$MethodHandler.class
 gabriel/core/user/domain/User$Builder.class
 gabriel/core/userProject/usecases/DeleteUserProject$Input.class
 gabriel/core/invitation/usacases/UpdateInvitation$Input.class

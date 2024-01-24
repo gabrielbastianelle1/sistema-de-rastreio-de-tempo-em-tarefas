@@ -12,12 +12,16 @@ public class JsonSerializeImpl implements JsonSerialize {
         StringBuilder jsonBuilder = new StringBuilder("{");
 
         for (Field field : fields) {
+            /**
+             * If annotation JsonFiel was set to false, the field is skipped
+             */
             if (!field.getDeclaredAnnotation(JsonField.class).value()) {
                 continue;
             }
 
             try {
                 field.setAccessible(true);
+
                 String fieldName = field.getName();
                 Object fieldValue = field.get(dto);
 
@@ -39,6 +43,8 @@ public class JsonSerializeImpl implements JsonSerialize {
             } catch (IllegalArgumentException | IllegalAccessException e) {
                 throw new RuntimeException(e.getMessage());
             }
+
+            field.setAccessible(false);
         }
 
         if (jsonBuilder.charAt(jsonBuilder.length() - 1) == ',') {

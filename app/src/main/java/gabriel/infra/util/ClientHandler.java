@@ -9,15 +9,20 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import gabriel.core.UseCaseDto;
+import gabriel.infra.reflection.Container;
+import gabriel.infra.reflection.MethodHandler;
+import gabriel.infra.reflection.Reflection;
 
 public class ClientHandler implements Runnable {
 
     private final Socket clientSocket;
     private final String basePackage;
+    private final Container container;
 
     public ClientHandler(Socket clientSocket, String basePackage) {
         this.clientSocket = clientSocket;
         this.basePackage = basePackage;
+        this.container = new Container();
     }
 
     @Override
@@ -51,10 +56,12 @@ public class ClientHandler implements Runnable {
 
             String controllerName = basePackage + request.getControllerName();
 
-            UseCaseDto.Output dto = new ControllerHandler(controllerName)
-                    .refletClass()
-                    .createNewInstance()
-                    .executeMethod(request.getMethodName(), request.getBody());
+            Class<?> controllerClazz = new Reflection().getClass(controllerName);
+
+            Object controller = container.getInstance(controllerClazz);
+
+            UseCaseDto.Output dto = new MethodHandler(controller).executeMethod(request.getMethodName(),
+                    request.getBody());
 
             prepareResponse(dto);
         } catch (Exception e) {
@@ -91,6 +98,10 @@ public class ClientHandler implements Runnable {
             System.out.println("An error occurred while closing the client socket: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    public <T, K extends T> void register(Class<T> typeInterface, Class<K> typeInstace) {
+        this.container.register(typeInterface, typeInstace);
     }
 
 }
