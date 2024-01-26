@@ -1,8 +1,9 @@
-package gabriel.infra.util;
+package gabriel.infra.parseObject;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import gabriel.infra.reflection.Container;
@@ -21,7 +22,7 @@ public class JsonDeserializeImpl implements JsonDeserialize {
     // }
 
     @Override
-    public <K, V> Map<K, V> execute(String json) {
+    public <K, V> Map<K, V> a(String json) {
         String[] entries = json.replaceAll("[{}\"]", "").split(",");
 
         /**
@@ -49,10 +50,10 @@ public class JsonDeserializeImpl implements JsonDeserialize {
 
     @Override
     @SuppressWarnings("unchecked")
-    public <T> T executeTest(Class<T> clazz, String json) {
+    public <T> T execute(Class<T> clazz, String stringToParse, Function<String, String[]> regexPatter) {
 
         try {
-            String[] entries = json.replaceAll("[{}\"]", "").split(",");
+            String[] entries = regexPatter.apply(stringToParse);
             Object dto = container.getInstance(clazz);
 
             for (String pair : entries) {
@@ -63,6 +64,7 @@ public class JsonDeserializeImpl implements JsonDeserialize {
                 Field field = clazz.getDeclaredField(fieldName);
 
                 field.setAccessible(true);
+
                 if (field.getType() == String.class) {
                     field.set(dto, fieldValue);
                 } else if (field.getType() == int.class) {
@@ -77,6 +79,11 @@ public class JsonDeserializeImpl implements JsonDeserialize {
             throw new RuntimeException(e);
         }
 
+    }
+
+    @Override
+    public <T> ClassInput defineClass(Class<T> clazz) {
+        return new ClassInput(clazz);
     }
 
 }

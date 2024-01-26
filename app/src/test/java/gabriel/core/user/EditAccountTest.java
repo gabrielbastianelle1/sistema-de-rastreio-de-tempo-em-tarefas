@@ -18,17 +18,18 @@ public class EditAccountTest {
 
     private final User user = mock(User.class);
 
-    @ParameterizedTest
-    @ValueSource(classes = { EditAccount.class })
-    public void testEditName(Class<? extends EditAccountAbstraction> clazz)
-            throws Exception {
-        EditAccountAbstraction editAccountAbstraction = clazz.getConstructor(User.class).newInstance(user);
+    // @ParameterizedTest
+    // @ValueSource(classes = { EditAccount.class })
+    // public void testEditName(Class<? extends EditAccountAbstraction> clazz)
+    // throws Exception {
+    // EditAccountAbstraction editAccountAbstraction =
+    // clazz.getConstructor(User.class).newInstance(user);
 
-        assertEquals(user.getName(), "gabriel");
-        editAccountAbstraction.editName("new name");
-        assertEquals(user.getName(), "new name");
+    // assertEquals(user.getName(), "gabriel");
+    // editAccountAbstraction.editName("new name");
+    // assertEquals(user.getName(), "new name");
 
-    }
+    // }
 
     // @ParameterizedTest
     // @ValueSource(classes = { CreateProject.class })

@@ -8,7 +8,7 @@ import gabriel.core.user.domain.User;
 import gabriel.core.user.domain.Username;
 import gabriel.core.user.repository.UserRepository;
 
-public class Database implements UserRepository {
+public class UserMemoryRepository implements UserRepository {
 
     private static Map<Username, User> users = new HashMap<Username, User>();
 

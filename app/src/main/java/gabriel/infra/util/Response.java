@@ -1,17 +1,24 @@
 package gabriel.infra.util;
 
-public class Response<O> {
-    private final O output;
+import gabriel.core.UseCaseDto;
+
+public class Response implements UseCaseDto.Output {
+    @JsonField(true)
+    private final UseCaseDto.Output output;
+
+    @JsonField(true)
     private final String status;
+
+    @JsonField(true)
     private final String message;
 
-    public Response(O output, String status, String message) {
+    public Response(UseCaseDto.Output output, String status, String message) {
         this.output = output;
         this.status = status;
         this.message = message;
     }
 
-    public O getOutput() {
+    public UseCaseDto.Output getOutput() {
         return output;
     }
 
@@ -21,11 +28,6 @@ public class Response<O> {
 
     public String getMessage() {
         return message;
-    }
-
-    @Override
-    public String toString() {
-        return "{\"output\":" + output.toString() + ", \"status\":" + status + ", \"message\":" + message + "}";
     }
 
 }

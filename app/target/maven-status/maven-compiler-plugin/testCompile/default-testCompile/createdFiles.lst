@@ -8,11 +8,9 @@ gabriel/task/TaskTest.class
 gabriel/core/invitation/InviteUserTest.class
 gabriel/task/DeleteTaskTest.class
 gabriel/core/user/SignupTest.class
-gabriel/infra/user/UserControllerTest.class
 gabriel/core/project/CreateProjectTest.class
 gabriel/task/CompleteTaskTest.class
 gabriel/core/user/SigninTest.class
-gabriel/task/AssociateTaskToProjectTest.class
 gabriel/task/ListTasksTest.class
 gabriel/project/DeleteProjectTest.class
 gabriel/core/userproject/DeleteUserProjectTest.class

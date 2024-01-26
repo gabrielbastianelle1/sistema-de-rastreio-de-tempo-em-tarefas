@@ -4,7 +4,7 @@ public abstract class UseCaseAbstraction<I extends UseCaseDto.Input, O extends U
 
     protected final I input;
 
-    public UseCaseAbstraction(I input) {
+    public UseCaseAbstraction(final I input) {
         this.input = input;
     }
 
