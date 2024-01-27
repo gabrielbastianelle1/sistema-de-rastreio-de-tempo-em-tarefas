@@ -1,6 +1,5 @@
 /app/src/test/java/gabriel/core/invitation/InviteUserTest.java
 /app/src/test/java/gabriel/core/task/CompleteTaskTest.java
-/app/src/test/java/gabriel/infra/user/UserControllerTest.java
 /app/src/test/java/gabriel/core/user/SignupTest.java
 /app/src/test/java/gabriel/core/repository/RepositoryTest.java
 /app/src/test/java/gabriel/core/task/DeleteTaskTest.java

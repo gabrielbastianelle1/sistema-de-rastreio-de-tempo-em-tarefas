@@ -6,10 +6,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import gabriel.core.user.repository.UserRepository;
-import gabriel.infra.parseObject.JsonDeserialize;
-import gabriel.infra.parseObject.JsonDeserializeImpl;
-import gabriel.infra.parseObject.JsonMapper;
-import gabriel.infra.parseObject.JsonMapperImpl;
+import gabriel.infra.parse.JsonMapper;
+import gabriel.infra.parse.JsonMapperImpl;
+import gabriel.infra.parse.JsonParse;
+import gabriel.infra.parse.JsonParseImpl;
 import gabriel.infra.repository.UserMemoryRepository;
 import gabriel.infra.util.ClientHandler;
 
@@ -29,7 +29,7 @@ public class App {
                         "gabriel.infra.controller.");
 
                 cria.register(UserRepository.class, UserMemoryRepository.class);
-                cria.register(JsonDeserialize.class, JsonDeserializeImpl.class);
+                cria.register(JsonParse.class, JsonParseImpl.class);
                 cria.register(JsonMapper.class, JsonMapperImpl.class);
 
                 Thread my = new Thread(cria, clientSocket.getInetAddress().getHostAddress());

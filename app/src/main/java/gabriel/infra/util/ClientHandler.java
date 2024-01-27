@@ -1,17 +1,18 @@
 package gabriel.infra.util;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
+
 import gabriel.core.UseCaseDto;
 import gabriel.infra.reflection.Container;
 import gabriel.infra.reflection.MethodHandler;
 import gabriel.infra.reflection.Reflection;
+import gabriel.infra.serialize.JsonSerialize;
+import gabriel.infra.serialize.JsonSerializeImpl;
 
 public class ClientHandler implements Runnable {
 
@@ -40,14 +41,14 @@ public class ClientHandler implements Runnable {
 
     private void handleClientRequest() throws IOException {
         InputStream input = clientSocket.getInputStream();
+        Scanner scanner = new Scanner(input, "UTF-8");
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(input, StandardCharsets.UTF_8));
-
-        String url;
-
-        while ((url = reader.readLine()) != null) {
+        while (scanner.hasNextLine()) {
+            String url = scanner.nextLine();
             processRequest(url);
         }
+
+        scanner.close();
     }
 
     private void processRequest(String url) {
