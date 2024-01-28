@@ -40,7 +40,6 @@ public class Container {
             }
 
             return constructor.newInstance(params.toArray());
-
         } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
                 | InvocationTargetException e) {
             throw new RuntimeException(e.getMessage());

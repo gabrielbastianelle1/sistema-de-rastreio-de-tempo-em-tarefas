@@ -6,13 +6,11 @@ public class Username {
     @JsonField(true)
     private final String username;
 
-    @JsonField(false)
-    private final String regex = "^(?=.*[a-zA-Z])[a-zA-Z0-9_]{3,16}$";
-
     public Username(String username) {
-        if (username.matches(regex) == false)
+        if (username.matches("^(?=.*[a-zA-Z])[a-zA-Z0-9_]{3,16}$") == false) {
             throw new IllegalArgumentException(
                     "invalid username, it sould have no special caracters and length between 3 and 16");
+        }
         this.username = username;
     }
 
@@ -50,6 +48,7 @@ public class Username {
 
     @Override
     public String toString() {
-        return username;
+        return "Username [username=" + username + "]";
     }
+
 }

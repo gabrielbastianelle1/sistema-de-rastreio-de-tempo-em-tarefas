@@ -17,7 +17,7 @@ public class DeleteProjectAndDisassociateTasks extends
 
     /**
      * method delete project and set all project propertie of each task to null.
-     * 
+     *
      * @return the dto Output containin the result boolean
      */
 

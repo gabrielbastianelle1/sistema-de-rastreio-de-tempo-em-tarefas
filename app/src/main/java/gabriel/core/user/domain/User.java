@@ -43,6 +43,11 @@ public final class User {
     @JsonField(true)
     private int workingHours;
 
+    public User(Username username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     private User(Builder builder) {
         this.username = builder.username;
         this.password = builder.password;
@@ -92,6 +97,12 @@ public final class User {
 
     public int getWorkingHours() {
         return workingHours;
+    }
+
+    @Override
+    public String toString() {
+        return "User [username=" + username + ", password=" + password + ", name=" + name + ", workingHours="
+                + workingHours + "]";
     }
 
 }

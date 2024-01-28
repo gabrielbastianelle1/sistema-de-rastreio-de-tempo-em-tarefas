@@ -1,7 +1,5 @@
 package gabriel.infra.controller;
 
-import com.google.gson.Gson;
-
 import gabriel.core.UseCaseAbstraction;
 import gabriel.core.UseCaseDto;
 import gabriel.core.user.dto.SigninDto;
@@ -9,7 +7,6 @@ import gabriel.core.user.dto.SignupDto;
 import gabriel.core.user.repository.UserRepository;
 import gabriel.core.user.usecases.Signin;
 import gabriel.core.user.usecases.Signup;
-import gabriel.infra.parse.JsonMapper;
 import gabriel.infra.parse.JsonParse;
 import gabriel.infra.util.Response;
 import gabriel.infra.util.ResponseError;
@@ -22,13 +19,10 @@ public class UserController {
 
     private final UserRepository userRepository;
     private final JsonParse deserialize;
-    private final JsonMapper jsonMapper;
-    private Gson gson = new Gson();
 
-    public UserController(UserRepository userRepository, JsonParse deserialize, JsonMapper jsonMapper) {
+    public UserController(UserRepository userRepository, JsonParse deserialize) {
         this.userRepository = userRepository;
         this.deserialize = deserialize;
-        this.jsonMapper = jsonMapper;
     }
 
     public <I extends UseCaseDto.Input, O extends UseCaseDto.Output> UseCaseDto.Output executeUseCase(
@@ -44,10 +38,7 @@ public class UserController {
     };
 
     public UseCaseDto.Output signup(String body) {
-        SignupDto.Input input = deserialize
-                .defineClass(SignupDto.Input.class)
-                .defineString(body)
-                .mapToPairs(s -> jsonMapper.map(s)).execute();
+        SignupDto.Input input = deserialize.execute(body, SignupDto.Input.class);
 
         input.setUserRepository(userRepository);
 
@@ -56,10 +47,7 @@ public class UserController {
     }
 
     public UseCaseDto.Output signin(String body) {
-        SigninDto.Input input = deserialize
-                .defineClass(SigninDto.Input.class)
-                .defineString(body)
-                .mapToPairs(s -> jsonMapper.map(s)).execute();
+        SigninDto.Input input = deserialize.execute(body, SigninDto.Input.class);
 
         input.setUserRepository(userRepository);
 

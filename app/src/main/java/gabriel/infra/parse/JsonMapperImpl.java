@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class JsonMapperImpl implements JsonMapper {
 
     @Override
-    public Map<String, String> map(String json) {
+    public Map<String, String> execute(String json) {
         String[] entries = json.replaceAll("[{}\"]", "").split(",");
         Map<String, String> map = Arrays.stream(entries)
                 .map(entry -> entry.split(":"))

@@ -1,34 +1,26 @@
 package gabriel.infra.repository;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.File;
 import java.util.Collection;
 
 import gabriel.core.user.domain.User;
 import gabriel.core.user.domain.Username;
 import gabriel.core.user.repository.UserRepository;
+import gabriel.infra.parse.CsvParse;
 
 public class UserFileRepository implements UserRepository {
 
+    private final CsvParse<User> csvParse;
+    private final File file;
+
+    public UserFileRepository(CsvParse<User> csvParse) {
+        this.csvParse = csvParse;
+        this.file = new File("users.csv");
+    }
+
     @Override
     public Collection<User> findAll() {
-        try {
-            FileInputStream fis = new FileInputStream("users.txt");
-
-            InputStreamReader reader = new InputStreamReader(fis);
-
-            BufferedReader br = new BufferedReader(reader);
-
-            String line = br.readLine();
-            System.out.println(line);
-
-            br.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return null;
+        return csvParse.parseFile(file, ",", User.class);
     }
 
     @Override
