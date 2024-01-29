@@ -7,6 +7,7 @@ import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
 
+import gabriel.core.task.domain.Task;
 import gabriel.core.user.domain.User;
 import gabriel.core.user.repository.UserRepository;
 import gabriel.infra.parse.CsvParseImpl;
@@ -26,28 +27,28 @@ public class App {
             throws IOException, ClassNotFoundException, NoSuchMethodException, SecurityException,
             InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 
-        String json = "{\"username\":\"myUsername\",\"password\":\"myPassword\"}";
+        // String json = "{\"username\":\"myUsername\",\"password\":\"myPassword\"}";
 
-        ObjectFactory objectFactory = new ObjectFactory();
-        CsvParseImpl<User> csvParseImpl = new CsvParseImpl<>(objectFactory);
-        UserFileRepository repository = new UserFileRepository(csvParseImpl);
+        // ObjectFactory objectFactory = new ObjectFactory();
+        // CsvParseImpl<User> csvParseImpl = new CsvParseImpl<>(objectFactory);
+        // UserFileRepository repository = new UserFileRepository(csvParseImpl);
 
-        System.out.println(repository.findAll());
+        // System.out.println(repository.findAll());
 
-        // try (ServerSocket serverSocket = new ServerSocket(4000)) {
-        // while (true) {
-        // Socket clientSocket = serverSocket.accept();
+        try (ServerSocket serverSocket = new ServerSocket(4000)) {
+            while (true) {
+                Socket clientSocket = serverSocket.accept();
 
-        // ClientHandler cria = new ClientHandler(clientSocket,
-        // "gabriel.infra.controller.");
+                ClientHandler cria = new ClientHandler(clientSocket,
+                        "gabriel.infra.controller.");
 
-        // cria.register(UserRepository.class, UserMemoryRepository.class);
-        // cria.register(JsonParse.class, JsonParseImpl.class);
-        // cria.register(JsonMapper.class, JsonMapperImpl.class);
+                cria.register(UserRepository.class, UserMemoryRepository.class);
+                cria.register(JsonParse.class, JsonParseImpl.class);
+                cria.register(JsonMapper.class, JsonMapperImpl.class);
 
-        // Thread my = new Thread(cria, clientSocket.getInetAddress().getHostAddress());
-        // my.start();
-        // }
-        // }
+                Thread my = new Thread(cria, clientSocket.getInetAddress().getHostAddress());
+                my.start();
+            }
+        }
     }
 }

@@ -5,6 +5,7 @@ gabriel/core/user/dto/SignupDto.class
 gabriel/core/task/dto/DeleteTaskDto$Output.class
 gabriel/core/project/dto/DeleteTaskDto$Output.class
 gabriel/core/task/usecases/CreateTask.class
+gabriel/infra/repository/UserSqlRepository.class
 gabriel/core/project/usecases/CreateProject.class
 gabriel/core/user/interfaces/AuthenticationAbstraction.class
 gabriel/core/task/dto/DeleteTaskDto$Input.class
@@ -41,6 +42,7 @@ gabriel/core/project/domain/Project.class
 gabriel/core/task/domain/Task.class
 gabriel/infra/reflection/ObjectFactory.class
 gabriel/infra/reflection/Container.class
+gabriel/infra/util/DI.class
 gabriel/core/project/dto/CreateProjectDto.class
 gabriel/core/user/domain/User$Builder.class
 gabriel/core/userProject/usecases/DeleteUserProject$Input.class
@@ -91,18 +93,15 @@ gabriel/core/invitation/dto/UpdateInvitationDto$Output.class
 gabriel/core/UseCaseDto.class
 gabriel/core/user/usecases/Signin.class
 gabriel/core/invitation/dto/InviteUserDto$Output.class
-gabriel/UsernameTest.class
 gabriel/infra/parse/JsonMapper.class
 gabriel/infra/repository/interfaces/RepositoryInterface.class
 gabriel/infra/serialize/Serialize.class
 gabriel/core/invitation/repository/InvitationRepository.class
-gabriel/UserTest.class
 gabriel/core/project/usecases/DeleteProjectAndTasks.class
 gabriel/infra/util/Request.class
 gabriel/infra/util/Response.class
 gabriel/infra/serialize/JsonSerializeImpl.class
 gabriel/infra/parse/Parse.class
-gabriel/UserTest$Builder.class
 gabriel/core/user/exceptions/UserNotFoundException.class
 gabriel/core/invitation/dto/InviteUserDto$Input.class
 gabriel/core/invitation/usacases/UpdateInvitation$Input.class

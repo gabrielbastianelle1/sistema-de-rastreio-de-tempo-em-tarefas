@@ -1,26 +1,48 @@
 version: '3.9'
 
+networks:
+    project:
+        name: project
+        driver: bridge
+        # to control the ips of my network
+        ipam:
+            driver: default
+            config:
+                - subnet: 10.0.0.0/24
+                  gateway: 10.0.0.1
+
 services:
+    db:
+        container_name: db
+        build: docker/db
+        networks:
+            project:
+        volumes:
+            - db:/var/lib/postgresql/data/
+        ports:
+            - "5423:5432"
     app:
         image: maven:3.8.7-openjdk-18-slim
         container_name: app
         working_dir: /app
+        networks:
+            project:
         volumes:
             - ./app:/app
         command: tail -f /dev/null
-    cli:
-        image: python:3.8
-        container_name: cli
-        working_dir: /cli
-        volumes:
-        - ./cli:/cli
-        command: tail -f /dev/null
+        depends_on:
+            - db
     gui:
         image: node
         container_name: gui
         working_dir: /gui
+        networks:
+            project:
         ports:
             - 3000:3000
         volumes:
             - ./gui:/gui
         command: tail -f /dev/null
+
+volumes:
+    db:

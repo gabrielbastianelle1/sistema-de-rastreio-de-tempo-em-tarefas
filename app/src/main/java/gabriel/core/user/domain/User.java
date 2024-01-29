@@ -1,5 +1,6 @@
 package gabriel.core.user.domain;
 
+import gabriel.infra.util.DI;
 import gabriel.infra.util.JsonField;
 
 public final class User {
@@ -43,9 +44,10 @@ public final class User {
     @JsonField(true)
     private int workingHours;
 
-    public User(Username username, String password) {
-        this.username = username;
-        this.password = password;
+    @DI
+    private User() {
+        this.username = null;
+        this.password = null;
     }
 
     private User(Builder builder) {

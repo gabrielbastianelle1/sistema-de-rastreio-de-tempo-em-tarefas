@@ -10,10 +10,13 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+import gabriel.infra.util.DI;
+
 public class Container {
     private final Map<Class<?>, Class<?>> typeMap = new HashMap<>();
 
     public Object getInstance(Class<?> clazz) {
+
         Class<?> destinyType = typeMap.get(clazz);
 
         if (destinyType != null) {
@@ -25,8 +28,16 @@ public class Container {
         Optional<Constructor<?>> baseConstructor = constructors.filter(c -> c.getParameterCount() == 0).findFirst();
 
         try {
-            if (baseConstructor.isPresent()) {
-                Object instance = baseConstructor.get().newInstance();
+
+            if (baseConstructor.isPresent() && baseConstructor.get().isAnnotationPresent(DI.class)) {
+                Constructor<?> constructor = baseConstructor.get();
+
+                constructor.setAccessible(true);
+
+                Object instance = constructor.newInstance();
+
+                constructor.setAccessible(false);
+
                 return instance;
             }
 

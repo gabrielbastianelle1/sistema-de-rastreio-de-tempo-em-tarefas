@@ -80,6 +80,13 @@ public final class Task {
 
     private TaskState state;
 
+    public Task() {
+        this.id = null;
+        this.description = null;
+        this.createdAt = null;
+        this.createdBy = null;
+    }
+
     private Task(Builder builder) {
         this.id = builder.id;
         this.description = builder.description;
@@ -174,6 +181,13 @@ public final class Task {
 
     public void setState(TaskState state) {
         this.state = state;
+    }
+
+    @Override
+    public String toString() {
+        return "Task [id=" + id + ", description=" + description + ", createdAt=" + createdAt + ", startDate="
+                + startDate + ", endDate=" + endDate + ", createdBy=" + createdBy + ", takenBy=" + takenBy
+                + ", project=" + project + ", state=" + state + "]";
     }
 
 }
