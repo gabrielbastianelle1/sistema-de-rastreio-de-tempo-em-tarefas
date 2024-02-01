@@ -13,23 +13,25 @@ networks:
 
 services:
     db:
+        image: project-db
         container_name: db
         build: docker/db
         networks:
             project:
+                ipv4_address: 10.0.0.2
         volumes:
             - db:/var/lib/postgresql/data/
         ports:
             - "5423:5432"
     app:
-        image: maven:3.8.7-openjdk-18-slim
+        image: project-java
         container_name: app
-        working_dir: /app
+        build: docker/java
         networks:
             project:
+                ipv4_address: 10.0.0.3
         volumes:
             - ./app:/app
-        command: tail -f /dev/null
         depends_on:
             - db
     gui:
@@ -38,11 +40,14 @@ services:
         working_dir: /gui
         networks:
             project:
+                ipv4_address: 10.0.0.5
         ports:
             - 3000:3000
         volumes:
             - ./gui:/gui
         command: tail -f /dev/null
+        depends_on:
+            - db
 
 volumes:
     db:

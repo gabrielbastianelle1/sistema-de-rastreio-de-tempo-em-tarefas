@@ -4,20 +4,11 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.HashMap;
-import java.util.Map;
-
-import gabriel.core.task.domain.Task;
-import gabriel.core.user.domain.User;
 import gabriel.core.user.repository.UserRepository;
-import gabriel.infra.parse.CsvParseImpl;
 import gabriel.infra.parse.JsonMapper;
 import gabriel.infra.parse.JsonMapperImpl;
 import gabriel.infra.parse.JsonParse;
 import gabriel.infra.parse.JsonParseImpl;
-import gabriel.infra.reflection.Container;
-import gabriel.infra.reflection.ObjectFactory;
-import gabriel.infra.repository.UserFileRepository;
 import gabriel.infra.repository.UserMemoryRepository;
 import gabriel.infra.util.ClientHandler;
 
@@ -35,7 +26,10 @@ public class App {
 
         // System.out.println(repository.findAll());
 
+        System.out.println("nao sei pq da esse error");
+
         try (ServerSocket serverSocket = new ServerSocket(4000)) {
+            System.out.println("Server running on port 4000");
             while (true) {
                 Socket clientSocket = serverSocket.accept();
 

@@ -33,6 +33,23 @@ docker-compose exec app bash
 ```sh
 ./compile
 ```
+
+#### Db container #####
+* Entering the db container:
+```sh
+docker-compose exec db bash
+```
+
+* Access the postgresql database:
+```sh
+psql -U gabriel -d project -h localhost
+```
+
+* In case you have the psql in you host machine:
+```sh
+psql -U gabriel -d project -h 10.0.0.2
+```
+
 #### Gui application ####
 
 * Start the gui container:
