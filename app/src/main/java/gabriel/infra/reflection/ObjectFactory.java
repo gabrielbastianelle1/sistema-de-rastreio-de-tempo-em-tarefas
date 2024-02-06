@@ -18,7 +18,7 @@ public class ObjectFactory {
 
             for (Map.Entry<String, String> entry : map.entrySet()) {
                 String fieldName = entry.getKey().trim();
-                String fieldValue = entry.getValue().trim();
+                String fieldValue = entry.getValue();
 
                 Field field = clazz.getDeclaredField(fieldName);
 

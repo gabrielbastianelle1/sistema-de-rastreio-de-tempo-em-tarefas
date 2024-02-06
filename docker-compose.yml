@@ -22,7 +22,7 @@ services:
         volumes:
             - db:/var/lib/postgresql/data/
         ports:
-            - "5423:5432"
+            - "5432:5432"
     app:
         image: project-java
         container_name: app

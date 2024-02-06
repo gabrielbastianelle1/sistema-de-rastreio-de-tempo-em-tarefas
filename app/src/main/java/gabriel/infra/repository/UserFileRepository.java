@@ -24,7 +24,7 @@ public class UserFileRepository implements UserRepository {
     }
 
     @Override
-    public Username save(User t) {
+    public User save(User t) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'save'");
     }
