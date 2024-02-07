@@ -50,7 +50,6 @@ public class UserController {
         SigninDto.Input input = deserialize.execute(body, SigninDto.Input.class);
 
         input.setUserRepository(userRepository);
-
         Signin signin = new Signin(input);
         return executeUseCase(signin, "success signin");
     }

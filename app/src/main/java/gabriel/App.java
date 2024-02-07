@@ -25,28 +25,25 @@ public class App {
 
         // String json = "{\"username\":\"myUsername\",\"password\":\"myPassword\"}";
 
-        UserSqlRepository repository = new UserSqlRepository("jdbc:postgresql://db:5432/project", "gabriel", "123",
-                new ObjectFactory());
+        // UserSqlRepository repository = new
+        // UserSqlRepository("jdbc:postgresql://db:5432/project", "gabriel", "123",
+        // new ObjectFactory());
 
-        // repository.save(new User.Builder(new Username("gabriel"), "123").build());
+        try (ServerSocket serverSocket = new ServerSocket(4000)) {
+            System.out.println("Server running on port 4000");
+            while (true) {
+                Socket clientSocket = serverSocket.accept();
 
-        System.out.println(repository.findAll());
+                ClientHandler cria = new ClientHandler(clientSocket,
+                        "gabriel.infra.controller.");
 
-        // try (ServerSocket serverSocket = new ServerSocket(4000)) {
-        // System.out.println("Server running on port 4000");
-        // while (true) {
-        // Socket clientSocket = serverSocket.accept();
+                cria.register(UserRepository.class, UserSqlRepository.class);
+                cria.register(JsonParse.class, JsonParseImpl.class);
+                cria.register(JsonMapper.class, JsonMapperImpl.class);
 
-        // ClientHandler cria = new ClientHandler(clientSocket,
-        // "gabriel.infra.controller.");
-
-        // cria.register(UserRepository.class, UserMemoryRepository.class);
-        // cria.register(JsonParse.class, JsonParseImpl.class);
-        // cria.register(JsonMapper.class, JsonMapperImpl.class);
-
-        // Thread my = new Thread(cria, clientSocket.getInetAddress().getHostAddress());
-        // my.start();
-        // }
-        // }
+                Thread my = new Thread(cria, clientSocket.getInetAddress().getHostAddress());
+                my.start();
+            }
+        }
     }
 }
