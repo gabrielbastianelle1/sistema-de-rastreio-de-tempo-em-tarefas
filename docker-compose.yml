@@ -35,19 +35,17 @@ services:
         depends_on:
             - db
     gui:
-        image: node
+        image: project-gui
         container_name: gui
-        working_dir: /gui
+        build: docker/node
         networks:
             project:
                 ipv4_address: 10.0.0.5
-        ports:
-            - 3000:3000
         volumes:
             - ./gui:/gui
-        command: tail -f /dev/null
         depends_on:
-            - db
+            - app
+
 
 volumes:
     db:
