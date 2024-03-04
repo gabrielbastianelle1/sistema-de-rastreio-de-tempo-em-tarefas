@@ -12,40 +12,32 @@ networks:
                   gateway: 10.0.0.1
 
 services:
-    db:
-        image: project-db
-        container_name: db
-        build: docker/db
+    service-db:
         networks:
             project:
                 ipv4_address: 10.0.0.2
-        volumes:
-            - db:/var/lib/postgresql/data/
-        ports:
-            - "5432:5432"
-    app:
-        image: project-java
-        container_name: app
-        build: docker/java
+        extends:
+            file: service-db/docker-compose.yml
+            service: service-db
+
+    service-app:
         networks:
             project:
                 ipv4_address: 10.0.0.3
-        volumes:
-            - ./app:/app
+        extends:
+            file: service-app/docker-compose.yml
+            service: service-app
         depends_on:
-            - db
-    gui:
-        image: project-gui
-        container_name: gui
-        build: docker/node
+            - service-db
+
+    service-frontend:
         networks:
             project:
                 ipv4_address: 10.0.0.5
-        volumes:
-            - ./gui:/gui
-        depends_on:
-            - app
+        extends:
+            file: service-frontend/docker-compose.yml
+            service: service-frontend
 
 
 volumes:
-    db:
+    db-data:

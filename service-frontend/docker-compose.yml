@@ -1,0 +1,12 @@
+version: '3.9'
+
+services:
+    service-frontend:
+        image: service-frontend
+        build:
+            context: .
+            args:
+                PORT: ${FRONTEND_PORT}
+        container_name: service-frontend
+        volumes:
+            - ./:/app

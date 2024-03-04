@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+    service-db:
+        image: service-db
+        build: .
+        container_name: service-db
+        env_file:
+            - .env
+        volumes:
+            - db-data:/var/lib/postgresql/shared-data/

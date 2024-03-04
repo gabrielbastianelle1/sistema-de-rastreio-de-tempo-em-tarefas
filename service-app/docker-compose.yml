@@ -1,0 +1,10 @@
+version: '3.9'
+
+
+services:
+    service-app:
+        image: service-app
+        container_name: service-app
+        build: .
+        volumes:
+            - ./:/app
