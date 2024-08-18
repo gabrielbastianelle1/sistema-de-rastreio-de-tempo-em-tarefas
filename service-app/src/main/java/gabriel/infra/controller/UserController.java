@@ -27,7 +27,6 @@ public class UserController {
 
     public <I extends UseCaseDto.Input, O extends UseCaseDto.Output> UseCaseDto.Output executeUseCase(
             UseCaseAbstraction<I, O> useCase, String message) {
-
         try {
             UseCaseDto.Output output = useCase.execute();
             UseCaseDto.Output response = new Response(output, "200", message);
@@ -39,7 +38,7 @@ public class UserController {
 
     public UseCaseDto.Output signup(String body) {
         SignupDto.Input input = deserialize.execute(body, SignupDto.Input.class);
-
+        System.out.println("to bateni nessa merda");
         input.setUserRepository(userRepository);
 
         Signup signup = new Signup(input);

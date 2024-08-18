@@ -29,7 +29,7 @@ public class UserSqlRepository implements UserRepository {
     public UserSqlRepository() {
         Properties properties = new Properties();
         FileInputStream fileInputStream = null;
-
+        System.out.println("to entrando aqui nesse troço ta ligado");
         try {
             fileInputStream = new FileInputStream("db.properties");
             properties.load(fileInputStream);
@@ -37,6 +37,10 @@ public class UserSqlRepository implements UserRepository {
             this.url = properties.getProperty("url");
             this.username = properties.getProperty("username");
             this.password = properties.getProperty("password");
+
+            System.out.println(this.url);
+            System.out.println(this.username);
+            System.out.println(this.password);
 
         } catch (IOException e) {
             e.printStackTrace();
