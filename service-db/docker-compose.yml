@@ -5,6 +5,8 @@ services:
         image: service-db
         build: .
         container_name: service-db
+        ports:
+            - "5432:5432"
         env_file:
             - .env
         volumes:

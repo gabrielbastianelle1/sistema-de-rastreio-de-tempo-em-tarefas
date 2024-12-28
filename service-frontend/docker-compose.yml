@@ -7,6 +7,8 @@ services:
             context: .
             args:
                 PORT: ${FRONTEND_PORT}
+        ports:
+            - "${FRONTEND_PORT}:${FRONTEND_PORT}"
         container_name: service-frontend
         volumes:
             - ./:/app

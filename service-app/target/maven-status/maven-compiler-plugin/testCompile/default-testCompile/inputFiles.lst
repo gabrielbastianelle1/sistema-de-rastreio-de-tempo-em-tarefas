@@ -1,9 +1,9 @@
 /app/src/test/java/gabriel/core/invitation/InviteUserTest.java
 /app/src/test/java/gabriel/core/task/CompleteTaskTest.java
-/app/src/test/java/gabriel/core/user/SignupTest.java
 /app/src/test/java/gabriel/core/repository/RepositoryTest.java
-/app/src/test/java/gabriel/core/task/DeleteTaskTest.java
+/app/src/test/java/gabriel/core/user/SignupTest.java
 /app/src/test/java/gabriel/core/task/CreateTaskTest.java
+/app/src/test/java/gabriel/core/task/DeleteTaskTest.java
 /app/src/test/java/gabriel/core/user/SigninTest.java
 /app/src/test/java/gabriel/core/project/CreateProjectTest.java
 /app/src/test/java/gabriel/core/invitation/UpdateInvitationTest.java
