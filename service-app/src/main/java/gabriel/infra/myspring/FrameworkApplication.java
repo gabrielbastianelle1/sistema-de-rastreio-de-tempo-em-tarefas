@@ -1,6 +1,12 @@
 package gabriel.infra.myspring;
 
+import java.net.InetSocketAddress;
+
 public class FrameworkApplication {
+
+    static void createServer() {
+    }
+
     public static void run(Class<?> mainClass) {
         try {
             Object mainInstance = mainClass.getConstructor().newInstance();
